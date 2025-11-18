@@ -125,7 +125,7 @@ describe('Dashboard', () => {
     render(<Dashboard />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: /Change Temperature/i })).toBeEnabled();
+      expect(screen.getByRole('button', { name: /Set Temperature/i })).toBeEnabled();
     });
   });
 
@@ -136,7 +136,7 @@ describe('Dashboard', () => {
     render(<Dashboard />);
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: /Change Temperature/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Set Temperature/i }));
     });
 
     expect(screen.getByTestId('temperature-modal')).toBeInTheDocument();
@@ -149,7 +149,7 @@ describe('Dashboard', () => {
     render(<Dashboard />);
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: /Change Temperature/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Set Temperature/i }));
     });
 
     fireEvent.click(screen.getByText('Confirm'));

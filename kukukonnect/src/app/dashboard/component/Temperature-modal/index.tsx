@@ -17,6 +17,10 @@ export default function TemperatureModal({
 }: TempModalProps) {
   const [successMessage, setSuccessMessage] = useState("");
 
+  const currentOptimumMin = optimumRange ? optimumRange[0] : 32;
+  const currentOptimumMax = optimumRange ? optimumRange[1] : 35;
+
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "minTemp") setMinTemp(Math.min(Number(value), maxTemp - 1));
@@ -51,12 +55,68 @@ export default function TemperatureModal({
         className="bg-white rounded-2xl shadow-2xl w-[90vw] max-w-screen-sm md:max-w-xl lg:max-w-2xl max-h-[90vh] overflow-y-auto relative p-4 sm:p-6 md:p-10"
       >
         <h2 id="modal-title" className="text-xl sm:text-2xl md:text-3xl font-bold text-emerald-900 mb-4 text-center">
-          Enter Temperature
+          Set Temperature
         </h2>
         <p className="text-emerald-900 text-center mb-6 sm:mb-8 text-base sm:text-lg">
-          Changing the optimal temperature might harm chickens.<br />
-          It's best to keep the temperature under the optimum temperature range of <span className="font-semibold">32°C - 35°C</span>.
+          WARNING: Setting the wrong temperature can harm your flock.<br />
+          Always set the temperature based on the chicks' age(see guide below).
+          <br />The currently set optimum temperature range is <span className="font-semibold text-[#D2914A]">{currentOptimumMin}°C - {currentOptimumMax}°C</span>.
         </p>
+
+        <div className="mb-6 sm:mb-8 p-4 bg-emerald-50 rounded-lg shadow-inner border border-emerald-200">
+          <h3 className="text-lg sm:text-xl font-bold text-emerald-800 mb-3 text-center">
+            Optimal Brooding Temperature by Age (Recommended)
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-emerald-200">
+              <thead className="bg-emerald-100">
+                <tr>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                    Age
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                    Temperature (°C)
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-emerald-200">
+                <tr>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-emerald-900">
+                    Week 1
+                  </td>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm text-emerald-900"> 
+                    32°C - 35°C
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-emerald-900">
+                    Week 2 & 3
+                  </td>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm text-emerald-900">
+                    29°C - 32°C
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-emerald-900">
+                    Week 4
+                  </td>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm text-emerald-900">
+                    27°C - 29°C
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-emerald-900">
+                    Week 5+
+                  </td>
+                  <td className="px-4 py-2 whitespace-nowrap text-sm text-emerald-900">
+                    24°C - 27°C
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div className="border rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
           <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
             <span>
