@@ -122,7 +122,7 @@ export default function Dashboard() {
               onClick={() => setModalOpen(true)}
               disabled={!optimumRange}
             >
-              Change Temperature
+              Set Temperature
             </button>
           </div>
         </div>
